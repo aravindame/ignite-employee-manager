@@ -1,6 +1,4 @@
-import React from 'react';
-import ListIcon from '@mui/icons-material/List';
-import AppsIcon from '@mui/icons-material/Apps';
+import React, { ReactNode } from 'react';
 import { Avatar as MuiAvatar } from '@mui/material';
 import { SxProps, Theme, useTheme } from '@mui/material/styles';
 
@@ -9,7 +7,6 @@ import { SxProps, Theme, useTheme } from '@mui/material/styles';
 The Avatar component is a custom avatar that provides a switch to toggle between list and grid view.
 It utilizes MUI's Avatar component internally.
 @component
-@param {boolean} gridView - A boolean value indicating whether the current view is in grid mode.
 @param {React.Dispatch<React.SetStateAction<boolean>>} setGridView - A function to set the grid view state.
 @param {SxProps<Theme>} [style] - Additional style properties for the avatar.
 @returns {JSX.Element} The rendered Avatar component.
@@ -18,14 +15,13 @@ It utilizes MUI's Avatar component internally.
 
 
 interface AvatarProps {
-  gridView: boolean;
-  setGridView: React.Dispatch<React.SetStateAction<boolean>>;
+  setGridView?: React.Dispatch<React.SetStateAction<boolean>>;
   styles?: SxProps<Theme>;
-  listIconStyles?: SxProps<Theme>;
-  appIconStyles?: SxProps<Theme>;
+  children?: ReactNode;
+  onclick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, args?:unknown)=>void;
 }
 
-export function Avatar({ gridView, setGridView, styles = {}, listIconStyles = {}, appIconStyles = {} }: AvatarProps): JSX.Element {
+export function Avatar({ setGridView, styles = {}, children, onclick }: AvatarProps): JSX.Element {
 
   const theme = useTheme();
 
@@ -33,9 +29,15 @@ export function Avatar({ gridView, setGridView, styles = {}, listIconStyles = {}
       <MuiAvatar
         sx={styles}
         //switch that change the appearance list or grid view
-        onClick={() => setGridView((prev:boolean) => !prev)}
+        onClick={(e) => {
+          if (setGridView) {
+            setGridView((prev:boolean) => !prev);
+            return;
+          }
+          onclick && onclick(e);
+        }}
       >
-        {gridView ? <ListIcon sx={listIconStyles} /> : <AppsIcon sx={appIconStyles} />}
+        {children}
       </MuiAvatar>
   );
 }

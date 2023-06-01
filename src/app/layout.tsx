@@ -2,7 +2,8 @@
 
 import { ReactNode } from 'react';
 import { ThemeProviderWrapper } from '@/themes/themeContext';
-
+import '../styles/index.css';
+import { Wrapper } from '@/redux/Wrapper';
 interface RootLayoutProps {
   children: ReactNode;
 }
@@ -17,7 +18,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body>
         <ThemeProviderWrapper>
-          {children}
+          <Wrapper>{children}</Wrapper>
         </ThemeProviderWrapper>
       </body>
     </html>

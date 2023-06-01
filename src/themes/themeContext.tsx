@@ -17,7 +17,7 @@ interface CustomPaletteColorOptions {
     main: string;
     error: string;
     success: string;
-    btnBackground: string
+    btnBackground: string;
 }
 interface CustomPaletteOptions extends PaletteOptions {
     tableCellHead: {

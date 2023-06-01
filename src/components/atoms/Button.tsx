@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { MouseEventHandler, ReactNode } from 'react';
 import {Button as MUIButton } from '@mui/material';
-import { useRouter } from 'next/router';
-import { SxProps, Theme, useTheme } from '@mui/material/styles';
+import { useRouter } from 'next/navigation';
+import { SxProps, Theme } from '@mui/material/styles';
 
 /**
 
@@ -13,7 +13,6 @@ It utilizes MUI's Button component internally.
 @param {Function} callback - The callback function to be invoked when the button is clicked.
 @param {SxProps<Theme>} [style] - Additional style properties for the button.
 @param {ButtonPropsVariantOverrides} [variant='contained'] - The variant of the button (text, contained, outlined).
-@param {string} [routes=''] - The route to navigate when the button is clicked.
 @returns {JSX.Element} The rendered Button component.
 @author Aravinda Meewalaarachchi
 
@@ -22,23 +21,22 @@ It utilizes MUI's Button component internally.
 type ButtonPropsVariantOverrides = "text" | "contained" | "outlined";
 
 interface ButtonProps {
-    text: string;
-    callback: (event?: Event, args?: unknown) => unknown;
-    style?: SxProps<Theme>;
+    text?: string;
+    onclick: MouseEventHandler<HTMLButtonElement>;
+    styles?: SxProps<Theme>;
     variant?: ButtonPropsVariantOverrides | undefined;
-    routes?: string;
+    children?: ReactNode;
 }
 
-export function Button({ style = {}, variant='contained', routes = '', callback, text }: ButtonProps): JSX.Element {
+export function Button({ styles = {}, variant='contained', onclick, text, children }: ButtonProps): JSX.Element {
     const router = useRouter();
-    const theme = useTheme();
     return (
         <MUIButton
             variant = {variant}
-            sx={style}
-            onClick={() => routes.length === 0 ? callback(): router.push(routes)}
-        >
-            {text}
+            sx={styles}
+            onClick={onclick}
+        >   
+            {children || text}
         </MUIButton>
     );
 }
