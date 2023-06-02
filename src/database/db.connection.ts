@@ -1,14 +1,17 @@
 import mongoose from 'mongoose';
-import * as data from '@/data/employees.json';
 import EmployeeModel from '@/models/employee';
+import axios from 'axios';
 
-const MONGODB_URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PWD}@cluster0.jwrama9.mongodb.net/test`;
+const DB_USERNAME = process.env.DB_USERNAME, DB_PWD =  process.env.DB_PWD;
 
-if (!MONGODB_URI) {
+
+if (!DB_USERNAME || !DB_PWD) {
   throw new Error(
     'Please define the DB_USERNAME and DB_PWD environment variable inside .env.local',
   );
 }
+
+const MONGODB_URI = `mongodb+srv://${DB_USERNAME}:${DB_PWD}@cluster0.jwrama9.mongodb.net/test`;
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
@@ -57,8 +60,10 @@ async function dbConnect() {
  */
 async function initDb() {
   const employees = await EmployeeModel.find({});
-  if (employees?.length === 0) {
-    await EmployeeModel.insertMany(Array.from(data.data));
+  const DB_INIT_DATA_IMPORT_SOURCE = process.env.DB_INIT_DATA_IMPORT_SOURCE || "";
+  if (employees?.length === 0 && DB_INIT_DATA_IMPORT_SOURCE !== "") {
+    const {data:{employees: payload}} = await axios.get(DB_INIT_DATA_IMPORT_SOURCE);
+    await EmployeeModel.insertMany(Array.from(payload));
   }
 }
 

@@ -1,9 +1,8 @@
 import { createAsyncThunk, AsyncThunkPayloadCreator } from '@reduxjs/toolkit';
 import axios from 'axios';
-import * as data from '@/../../src/data/employees.json';
 
 interface Employee {
-  _id: string;
+  _id?: string;
 }
 
 interface ErrorResponse {
@@ -15,11 +14,11 @@ interface FetchAllEmployeesResponse {
 }
 
 interface CreateEmployeeResponse {
-  employee: Employee;
+  data: Employee;
 }
 
 interface UpdateEmployeeResponse {
-  updatedEmployee: Employee;
+  data: Employee;
 }
 
 // Configure the base URL for HTTP requests
@@ -38,27 +37,27 @@ const fetchAllEmployeesPayloadCreator: AsyncThunkPayloadCreator<
 > = async (id, { rejectWithValue }) => {
   try {
     const response = await axios.get<FetchAllEmployeesResponse>(urlConfig.BASE_URL);
-    return response?.data?.employees || data.data || [];
+    return response?.data?.employees || [];
   } catch (error) {
     return rejectWithValue(handleRequestError(error));
   }
 };
 
 const createEmployeePayloadCreator: AsyncThunkPayloadCreator<
-  Employee,
+CreateEmployeeResponse,
   { employee: Employee },
   { rejectValue: ErrorResponse }
-> = async ({ employee }, { rejectWithValue }) => {
+> = async (employee, { rejectWithValue }) => {
   try {
     const response = await axios.post<CreateEmployeeResponse>(urlConfig.BASE_URL, employee);
-    return response?.data?.employee || null;
+    return response?.data || null;
   } catch (error) {
     return rejectWithValue(handleRequestError(error));
   }
 };
 
 const updateEmployeePayloadCreator: AsyncThunkPayloadCreator<
-  Employee,
+   UpdateEmployeeResponse,
   { data: Employee; employeeId: string },
   { rejectValue: ErrorResponse }
 > = async ({ data, employeeId }, { rejectWithValue }) => {
@@ -67,7 +66,8 @@ const updateEmployeePayloadCreator: AsyncThunkPayloadCreator<
       `${urlConfig.BASE_URL}/${employeeId}`,
       data
     );
-    return response?.data?.updatedEmployee || null;
+    console.log(response?.data, data, "updEmp")
+    return response?.data || null;
   } catch (error) {
     return rejectWithValue(handleRequestError(error));
   }

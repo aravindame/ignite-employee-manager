@@ -1,3 +1,4 @@
+import { current } from "@reduxjs/toolkit";
 
 export interface Employee {
     _id: string;
@@ -61,6 +62,8 @@ export interface State {
     state: State,
     action: Action
   ): State => {
+    console.log(current(state),  action, "fetch all data");
+
     return {
       ...state,
       status: statusTypes.FULFILLED,

@@ -11,29 +11,29 @@ export function schemaValidator() {
   const schema: Schema = Joi.object({
     first_name: Joi.string()
       .required()
-      .label('First Name is required.')
+      .label('First name is required.')
       .regex(/^[aA-zZ\s]+$/)
       .label('Only allow alphabets.')
       .min(6)
-      .label('Minimum length should be 6.')
+      .label('Minimum length should be 6 for first name.')
       .max(10)
-      .label('Maximum length should be 10.'),
+      .label('Maximum length should be 10 for first name.'),
     last_name: Joi.string()
       .required()
-      .label('First Name is required.')
+      .label('Last Name is required.')
       .regex(/^[aA-zZ\s]+$/)
-      .label('Only allow alphabets.')
+      .label('Only allow alphabets for Last Name.')
       .min(6)
-      .label('Minimum length should be 6.')
+      .label('Minimum length should be 6 for last name.')
       .max(10)
-      .label('Maximum length should be 10.'),
+      .label('Maximum length should be 10 for last name.'),
     email: Joi.string().required().email().label('Please enter valid email.'),
     number: Joi.string()
       .required()
       .regex(/^(?:[+0]9)?[0-9]{10}$/)
       .label('Phone number is in invalid format or length is less than 10.'),
     gender: Joi.string().valid('M', 'F').required().label('Values should be "M" or "F".'),
-    photo: Joi.string().required().label('Photo field is required.'),
+    photo: Joi.string().min(0).optional().label('Photo field is required.'),
   });
 
   return function (data: any): ValidationResult {

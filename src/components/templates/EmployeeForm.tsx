@@ -38,7 +38,7 @@ type Employee = EmployeeType | null ;
   
 export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => {
   // default profile picture when employee photo is not present in payload
-  const avatarImg: string = process.env.AVATAR || '';
+  const avatarImg: string = process.env.NEXT_PUBLIC_AVATAR_URL || '';
 
   // helper fields to generate the employee form fields dynamically
   const fields: Record<string, string> = useMemo(
@@ -64,7 +64,7 @@ export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => 
     resolver: yupResolver(validationSchema),
   });
 
-  const employee: Employee = useSelector((state: State) => state?.employee);
+  const { employee } : any = useSelector((state: State) => state?.employees);
   const [gender, setGender] = useState('Male');
 
     // fetch the employee by employeeID from store if it is a employee edit route.
@@ -96,7 +96,9 @@ export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => 
   const onSubmit: SubmitHandler<any> = (data) => {
     const formData = { ...data };
     normalizePayload(formData, gender, employee, avatarImg);
-    employeeId ? dispatch(updateEmployee({ data, employeeId })  as unknown as AnyAction) : dispatch(createEmployee(data) as unknown as AnyAction);
+    const mutatedData = { data: formData, employeeId : employeeId || "" };
+    console.log(employeeId, "formData")
+    employeeId ? dispatch(updateEmployee(mutatedData)  as unknown as AnyAction) : dispatch(createEmployee(formData) as unknown as AnyAction);
 
   };
   
@@ -139,7 +141,7 @@ return (
           <Box px={4} py={2} my={2}>
             <Grid container spacing={1} justifyContent='center'>
               {Object.keys(fields)?.map((field) => {
-                console.log(field, "*****************")
+                console.log(employee && employee[`${field}` as keyof typeof employee], "dgfgdfgfdgfdgfggf")
                 return (
                   <Grid key={field} item xs={12} display='block'>
                     <Box display={'flex'} alignItems='center'>

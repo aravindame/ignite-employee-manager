@@ -42,7 +42,7 @@ export function Typography({ styles = {}, variant, text, children, textTransform
             id={id}
         >
             <>{children}</>
-            <>{text}</>
+            <>{text !== "undefined" ? text : ""}</>
         </MUITypography>
     );
 }

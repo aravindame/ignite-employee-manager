@@ -93,24 +93,24 @@ export function EmployeeTable({ employees }: EmployeeTableProps): JSX.Element {
         </TableHead>
         <TableBody>
           { employees?.map((row) => (
-            <TableRow key={row.email}>
+            <TableRow key={row?.email}>
               <StyledTableCell  align='center' width={80} height={80}>
-                <Image src={row.photo} alt={`${row.name_img}`} width={60} height={60} />
+                <Image src={(row?.photo) as string} alt={`${row?.name_img}`} width={60} height={60} />
               </StyledTableCell>
               <StyledTableCell component='th' scope='row' align='left'>
-                <Typography variant='table-data' text= {`${row.first_name}`} />
+                <Typography variant='table-data' text= {`${row?.first_name}`} />
               </StyledTableCell>
               <StyledTableCell component='th' scope='row' align='left'>
-                <Typography variant='table-data' text= {`${row.last_name}`} />
+                <Typography variant='table-data' text= {`${row?.last_name}`} />
               </StyledTableCell>
               <StyledTableCell align='left'>
-                <Typography variant='table-data' text = {`${row.email}`} textTransform={'lowercase'} />
+                <Typography variant='table-data' text = {`${row?.email}`} textTransform={'lowercase'} />
               </StyledTableCell>
               <StyledTableCell align='left'>
-                <Typography variant='table-data' text={`${row.number}`} />
+                <Typography variant='table-data' text={`${row?.number}`} />
               </StyledTableCell>
               <StyledTableCell align='left'>
-                <Typography variant='table-data' text={`${row.gender}`} />
+                <Typography variant='table-data' text={`${row?.gender}`} />
               </StyledTableCell>
               <StyledTableCell align='left'>
                 <Typography variant='table-data'>
@@ -127,7 +127,7 @@ export function EmployeeTable({ employees }: EmployeeTableProps): JSX.Element {
                         },
                       }}
                       //route to the employee edit page
-                      onclick={() => router.push(`/employee/edit/${row._id}`)}
+                      onclick={() => router.push(`/employee/edit/${row?._id}`)}
                     >
                       Edit
                     </Button>
@@ -143,7 +143,7 @@ export function EmployeeTable({ employees }: EmployeeTableProps): JSX.Element {
                         },
                       }}
                       // delete the selected employee
-                      onclick={() => dispatch(deleteEmployee(row._id) as unknown as AnyAction)}
+                      onclick={() => dispatch(deleteEmployee(row?._id) as unknown as AnyAction)}
                     >
                       <DeleteIcon sx={{ fontSize: 48 }} />
                     </Avatar>

@@ -42,7 +42,11 @@ const employeeSlice = createSlice({
   initialState,
   reducers: {
     findEmployeeById(state, action: FindEmployeeByIdAction) {
+      console.log(state.employees, "action payloaddf**************")
+
       const result = state.employees.filter((item) => {
+      console.log(item._id, action.payload, "action payloaddf**************")
+
         return item._id === action.payload;
       });
       return { ...state, employee: result[0] };

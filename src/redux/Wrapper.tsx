@@ -1,5 +1,4 @@
 import React, { ReactNode, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { fetchAllEmployees } from './actions/employee.actions';
 import { store } from '@/../../src/redux/store';
 import { Provider } from 'react-redux';

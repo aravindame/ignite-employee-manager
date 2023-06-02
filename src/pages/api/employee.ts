@@ -15,7 +15,6 @@ import { NextApiResponse, NextApiRequest } from "next";
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   // Make sure that the database connection is safe to use before handling the request.
   await safeExecutionHandler(connection, req, res, { statusCode: 500 });
-
   // Handle the request based on the HTTP method.
   switch (req?.method) {
     case 'GET': {

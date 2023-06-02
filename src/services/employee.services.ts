@@ -21,13 +21,14 @@ return await EmployeeModel.create(body);
 }
 
 export async function updateEmployee(body: Employee, employeeId: string|undefined| string[]): Promise<QueryResults> {
+  console.log("out", body);
 
   // Validate the request body
   const error = validateBeforeAddOrUpdate(body);
   if (error) {
     throw error;
   }
-
+console.log("in");
   const employee = await EmployeeModel.findById(employeeId);
 
   if (!employee) {
@@ -38,13 +39,14 @@ export async function updateEmployee(body: Employee, employeeId: string|undefine
 }
 
 export async function deleteEmployee(employeeId:string | string[] | undefined) {
-  const employee = await EmployeeModel.findByIdAndRemove(employeeId);
+  
+  const employee = await EmployeeModel.findById(employeeId);
 
   if (!employee) {
     throw new Error('Invalid employee ID.');
   }
 
-  return employee;
+  return await EmployeeModel.findByIdAndRemove(employeeId);
 }
 
 

@@ -1,7 +1,5 @@
-import EmployeeModel from '@/../../src/models/employee';
 import { Employee } from '@/redux/reducers/employee.reducers';
 import { addEmployee, deleteEmployee, listAllEmployees, updateEmployee } from '@/services/employee.services';
-import { schemaValidator } from '@/util/employeeSchemaValidator';
 import { ObjectId, Document } from 'mongoose';
 import { NextApiResponse, NextApiRequest } from "next";
 
@@ -38,6 +36,7 @@ export async function listAllEmployeeHandler(req: NextApiRequest, res: NextApiRe
  */
 export async function addEmployeeHandler(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
+  console.log("bodyyy", req.body)
   const employee: QueryResults = await addEmployee(body);
   res.status(201).json({ ...employee?._doc });
 }
@@ -71,5 +70,5 @@ export async function updateEmployeeHandler(req: NextApiRequest, res: NextApiRes
  */
 export async function deleteEmployeeHandler(req: NextApiRequest, res: NextApiResponse) {
   await deleteEmployee(req?.query?.employeeId);
-  res.status(204);
+  res.status(204).send({});
 }
