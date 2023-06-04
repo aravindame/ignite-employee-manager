@@ -1,6 +1,18 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 
-// Define the Employee interface
+/**
+ * Represents an Employee document.
+ *
+ * @interface Employee
+ * @extends Document
+ * @property {string} first_name - The first name of the employee.
+ * @property {string} last_name - The last name of the employee.
+ * @property {string} email - The email of the employee.
+ * @property {string} number - The phone number of the employee.
+ * @property {string} gender - The gender of the employee.
+ * @property {string} photo - The photo URL of the employee.
+ * @author Aravinda Meewalaarachchi 
+ */
 interface Employee extends Document {
   first_name: string;
   last_name: string;

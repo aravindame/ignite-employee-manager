@@ -1,6 +1,12 @@
 import { createAsyncThunk, AsyncThunkPayloadCreator } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+/**
+ * Includes all the redux action creator related functions. 
+ *
+ * @author Aravinda Meewalaarachchi
+ */
+
 interface Employee {
   _id?: string;
 }
@@ -26,9 +32,22 @@ const urlConfig = {
   BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || '',
 };
 
+/**
+ * Handles request errors and returns an ErrorResponse object.
+ *
+ * @param {any} error - The error object.
+ * @returns {ErrorResponse} - The ErrorResponse object.
+ */
+
 const handleRequestError = (error: any): ErrorResponse => {
   return error?.response?.data || { message: 'Unknown error occurred' };
 };
+
+/**
+ * Payload creator for fetching all employees.
+ *
+ * @type {AsyncThunkPayloadCreator<Employee[], string, { rejectValue: ErrorResponse }>}
+ */
 
 const fetchAllEmployeesPayloadCreator: AsyncThunkPayloadCreator<
   Employee[],
@@ -43,6 +62,11 @@ const fetchAllEmployeesPayloadCreator: AsyncThunkPayloadCreator<
   }
 };
 
+/**
+ * Payload creator for creating an employee.
+ *
+ * @type {AsyncThunkPayloadCreator<CreateEmployeeResponse, { employee: Employee }, { rejectValue: ErrorResponse }>}
+ */
 const createEmployeePayloadCreator: AsyncThunkPayloadCreator<
 CreateEmployeeResponse,
   { employee: Employee },
@@ -56,6 +80,11 @@ CreateEmployeeResponse,
   }
 };
 
+/**
+ * Payload creator for updating an employee.
+ *
+ * @type {AsyncThunkPayloadCreator<UpdateEmployeeResponse, { data: Employee; employeeId: string }, { rejectValue: ErrorResponse }>}
+ */
 const updateEmployeePayloadCreator: AsyncThunkPayloadCreator<
    UpdateEmployeeResponse,
   { data: Employee; employeeId: string },
@@ -66,13 +95,17 @@ const updateEmployeePayloadCreator: AsyncThunkPayloadCreator<
       `${urlConfig.BASE_URL}/${employeeId}`,
       data
     );
-    console.log(response?.data, data, "updEmp")
     return response?.data || null;
   } catch (error) {
     return rejectWithValue(handleRequestError(error));
   }
 };
 
+/**
+ * Payload creator for deleting an employee.
+ *
+ * @type {AsyncThunkPayloadCreator<string, string, { rejectValue: ErrorResponse }>}
+ */
 const deleteEmployeePayloadCreator: AsyncThunkPayloadCreator<
   string,
   string,
@@ -86,20 +119,52 @@ const deleteEmployeePayloadCreator: AsyncThunkPayloadCreator<
   }
 };
 
+/**
+ * Fetches all employees asynchronously.
+ *
+ * @function fetchAllEmployees
+ * @returns {AsyncThunkAction<Employee[], string, { rejectValue: ErrorResponse }>}
+ */
+
 export const fetchAllEmployees = createAsyncThunk(
   'employee/fetchAll',
   fetchAllEmployeesPayloadCreator
 );
+
+/**
+ * Creates an employee asynchronously.
+ *
+ * @function createEmployee
+ * @param {Employee} employee - The employee object to create.
+ * @returns {AsyncThunkAction<CreateEmployeeResponse, { employee: Employee }, { rejectValue: ErrorResponse }>}
+ */
 
 export const createEmployee = createAsyncThunk(
   'employee/create',
   createEmployeePayloadCreator
 );
 
+/**
+ * Updates an employee asynchronously.
+ *
+ * @function updateEmployee
+ * @param {Object} data - The updated employee data.
+ * @param {string} employeeId - The ID of the employee to update.
+ * @returns {AsyncThunkAction<UpdateEmployeeResponse, { data: Employee; employeeId: string }, { rejectValue: ErrorResponse }>}
+ */
+
 export const updateEmployee = createAsyncThunk(
   'employee/update',
   updateEmployeePayloadCreator
 );
+
+/**
+ * Deletes an employee asynchronously.
+ *
+ * @function deleteEmployee
+ * @param {string} employeeId - The ID of the employee to delete.
+ * @returns {AsyncThunkAction<string, string, { rejectValue: ErrorResponse }>}
+ */
 
 export const deleteEmployee = createAsyncThunk(
   'employee/delete',

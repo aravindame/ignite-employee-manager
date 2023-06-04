@@ -4,7 +4,7 @@ import { ObjectId, Document } from 'mongoose';
 import { NextApiResponse, NextApiRequest } from "next";
 
 /**
- * Handles requests for GET and POST employee API routes.
+ * A controller that handles CRUD operations requests for employee API routes.
  *
  * @author Aravinda Meewalaarachchi
  */
@@ -36,7 +36,6 @@ export async function listAllEmployeeHandler(req: NextApiRequest, res: NextApiRe
  */
 export async function addEmployeeHandler(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
-  console.log("bodyyy", req.body)
   const employee: QueryResults = await addEmployee(body);
   res.status(201).json({ ...employee?._doc });
 }

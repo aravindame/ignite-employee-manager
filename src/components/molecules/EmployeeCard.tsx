@@ -21,6 +21,7 @@ import { AnyAction } from 'redux';
  * @component
  * @param {EmployeeCardProps} props - The employee object for the EmployeeCard component.
  * @returns {JSX.Element} - The rendered EmployeeCard component.
+ * @author Aravinda Meewalaarachchi
  */
 
 interface EmployeeCardProps {

@@ -2,6 +2,15 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import EmployeeCard from '@/../../src/components/molecules/EmployeeCard';
 
+/**
+ * Renders a grid view of employee cards.
+ *
+ * @component
+ * @param {Employee[]} props.employees - An array of employee objects.
+ * @returns {JSX.Element} The rendered EmployeeGridView component.
+ * @author Aravinda Meewalaarachchi
+ */
+
 interface EmployeeGridViewProps {
   employees: Employee[];
 }

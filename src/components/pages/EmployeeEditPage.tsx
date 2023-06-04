@@ -5,6 +5,10 @@ import { EmployeeForm } from '../templates/EmployeeForm';
 
 /**
  * A Component that will responsible for rendering employee edit page
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.employeeId - The ID of the employee to be edited.
+ * @returns {JSX.Element} The rendered EmployeeEditPage component.
  * @author Aravinda Meewalaarachchi
  *
  */

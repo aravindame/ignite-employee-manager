@@ -2,6 +2,12 @@ import mongoose from 'mongoose';
 import EmployeeModel from '@/models/employee';
 import axios from 'axios';
 
+/**
+ * Handles database connectivity and configurations.
+ *
+ * @author Aravinda Meewalaarachchi
+ */
+
 const DB_USERNAME = process.env.DB_USERNAME, DB_PWD =  process.env.DB_PWD;
 
 

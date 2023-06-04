@@ -31,6 +31,7 @@ import { AnyAction } from '@reduxjs/toolkit';
  * @param {object} props - The component props.
  * @param {string} props.employeeId - The ID of the employee.
  * @returns {JSX.Element} The JSX element representing the EmployeeForm component.
+ * @author Aravinda Meewalaarachchi
  */
 
 type EmployeeFormProps = { employeeId?: string };
@@ -97,7 +98,6 @@ export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => 
     const formData = { ...data };
     normalizePayload(formData, gender, employee, avatarImg);
     const mutatedData = { data: formData, employeeId : employeeId || "" };
-    console.log(employeeId, "formData")
     employeeId ? dispatch(updateEmployee(mutatedData)  as unknown as AnyAction) : dispatch(createEmployee(formData) as unknown as AnyAction);
 
   };
@@ -141,7 +141,6 @@ return (
           <Box px={4} py={2} my={2}>
             <Grid container spacing={1} justifyContent='center'>
               {Object.keys(fields)?.map((field) => {
-                console.log(employee && employee[`${field}` as keyof typeof employee], "dgfgdfgfdgfdgfggf")
                 return (
                   <Grid key={field} item xs={12} display='block'>
                     <Box display={'flex'} alignItems='center'>

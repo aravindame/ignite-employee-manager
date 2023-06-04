@@ -8,6 +8,14 @@ import { EmployeeButtonGroup } from '@/../../src/components/molecules/EmployeeBu
 import { useSelector } from 'react-redux';
 import { EmployeeTable } from '../molecules/EmployeeTable';
 
+/**
+ * Renders a list of employees with the option to switch between grid and table view.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered EmployeeList component.
+ * @author Aravinda Meewalaarachchi
+ */
+
 interface Employee {
   _id: string;
   photo: string;

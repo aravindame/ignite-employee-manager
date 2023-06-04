@@ -20,6 +20,15 @@ import { Button } from '../atoms/Button';
 import { Typography } from '../atoms/Typography';
 import { AnyAction } from '@reduxjs/toolkit';
 
+/**
+ * Renders a table displaying employee information.
+ *
+ * @component
+ * @props {Employee[]} props.employees - An array of employee objects.
+ * @returns {JSX.Element} The rendered EmployeeTable component.
+ * @author Aravinda Meewalaarachchi
+ */
+
 interface Employee {
   _id: string;
   photo: string;
@@ -35,6 +44,15 @@ interface EmployeeTableProps {
   employees?: Employee[];
 }
 
+/**
+ * Represents a custom palette extending the Palette interface.
+ *
+ * @interface CustomPalette
+ * @extends {Palette}
+ * @property {string} tableCellHead.background - The background color for table cell heads.
+ * @property {string} tableCellHead.boarder - The border color for table cell heads.
+ * @property {string} tableCellHead.button - The button color for table cell heads.
+ */
 interface CustomPalette extends Palette {
     tableCellHead: {
         background: string;
@@ -42,6 +60,15 @@ interface CustomPalette extends Palette {
         button: string;
     }
 }
+
+/**
+ * A custom styled TableCell component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Theme} props.theme - The MUI theme object.
+ * @returns {JSX.Element} The rendered StyledTableCell component.
+ */
 
 const StyledTableCell = styled(TableCell)(({ theme })=> ({
   [`&.${tableCellClasses.head}`]: {
