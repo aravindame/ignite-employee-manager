@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Typography as MUITypography, TypographyTypeMap } from '@mui/material';
+import { Typography as MUITypography } from '@mui/material';
 import { SxProps, Theme } from '@mui/material/styles';
 
 /**
@@ -15,13 +15,10 @@ It utilizes MUI's Typography component internally.
 @author Aravinda Meewalaarachchi
 */
 
-
-type TypographyVariant = keyof TypographyTypeMap;
-
 type CustomTypographyVariant = 'text-card-info' | 'customForm' | 'inherit' | 'table-data';
 
 interface TypographyProps {
-  variant?: TypographyVariant |  CustomTypographyVariant;
+  variant?: CustomTypographyVariant;
   text?: string;
   textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
   children?: ReactNode;

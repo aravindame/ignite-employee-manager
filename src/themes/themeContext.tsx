@@ -29,7 +29,7 @@ interface CustomPaletteOptions extends PaletteOptions {
 
 interface CustomTypographyProps {
     variant: Variant | string;
-  }
+}
 
 
 const theme = createTheme({
@@ -82,7 +82,7 @@ const theme = createTheme({
             variants: [
                 {
                     props: {
-                        variant: 'text-card-info' as CustomTypographyProps | any
+                        variant: 'text-card-info' as any
                     },
                     style: {
                         fontSize: 12,
@@ -109,7 +109,7 @@ const theme = createTheme({
                 },
                 {
                     props: {
-                        variant: 'body3' as CustomTypographyProps | any,
+                        variant: 'body3' as any,
                     },
                     style: {
                         fontSize: 8,
@@ -117,7 +117,7 @@ const theme = createTheme({
                 },
                 {
                     props: {
-                        variant: 'table-data' as CustomTypographyProps | any,
+                        variant: 'table-data' as any,
                     },
                     style: {
                         fontSize: 18,
