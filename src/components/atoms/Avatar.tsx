@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Avatar as MuiAvatar } from '@mui/material';
-import { SxProps, Theme, useTheme } from '@mui/material/styles';
+import { SxProps, Theme } from '@mui/material/styles';
 
 /**
 
@@ -23,8 +23,6 @@ interface AvatarProps {
 
 export function Avatar({ setGridView, styles = {}, children, onclick }: AvatarProps): JSX.Element {
 
-  const theme = useTheme();
-
   return (
       <MuiAvatar
         sx={styles}
@@ -34,7 +32,7 @@ export function Avatar({ setGridView, styles = {}, children, onclick }: AvatarPr
             setGridView((prev:boolean) => !prev);
             return;
           }
-          onclick && onclick(e);
+          onclick?.(e);
         }}
       >
         {children}

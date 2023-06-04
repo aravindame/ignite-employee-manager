@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 
 export interface Employee {
   _id: string;

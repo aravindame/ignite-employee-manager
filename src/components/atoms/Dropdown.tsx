@@ -40,7 +40,7 @@ export function Dropdown({ style = {}, list, labelId, id, fullWidth=true, value,
             onChange={onChange}
         >
             {
-                list && list.map(item=><MenuItem key={item} value={item}>{item}</MenuItem>)
+                list?.map(item => <MenuItem key={item} value={item}>{item}</MenuItem>) ?? null
             }
         </Select>
     );

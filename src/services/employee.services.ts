@@ -100,6 +100,4 @@ export function validateBeforeAddOrUpdate(body: Employee) {
   if (error) {
     return new Error(error.details[0].message);
   }
-
-  return;
 }

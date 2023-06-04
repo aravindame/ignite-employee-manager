@@ -1,5 +1,4 @@
 
-import { useRouter } from 'next/navigation';
 import Header from '../organisums/Header';
 import { EmployeeForm } from '../templates/EmployeeForm';
 
@@ -18,7 +17,6 @@ interface EmployeeEditPageProps {
 }
 
 export default function EmployeeEditPage({ employeeId } : EmployeeEditPageProps): JSX.Element {
-  const router = useRouter();
 
   return (
     <main>

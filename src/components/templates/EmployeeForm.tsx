@@ -9,8 +9,7 @@ import {
   Grid,
   TextField,
   CssBaseline,
-  Container,
-  SelectChangeEvent
+  Container
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/navigation';
@@ -18,7 +17,7 @@ import validationSchema from '@/../../src/util/employeeFormValidator';
 import { camelToSnakeCase } from '@/../../src/util/camelToSnakeCase';
 import { Button } from '../atoms/Button';
 import { Typography } from '../atoms/Typography';
-import {  Dropdown } from '../atoms/Dropdown';
+import { Dropdown } from '../atoms/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { Employee as EmployeeType, State } from '@/redux/reducers/employee.reducers';
 import { findEmployeeById } from '@/redux/features/employeeSlice';
@@ -35,8 +34,8 @@ import { AnyAction } from '@reduxjs/toolkit';
  */
 
 type EmployeeFormProps = { employeeId?: string };
-type Employee = EmployeeType | null ;
-  
+type Employee = EmployeeType | null;
+
 export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => {
   // default profile picture when employee photo is not present in payload
   const avatarImg: string = process.env.NEXT_PUBLIC_AVATAR_URL || '';
@@ -65,21 +64,21 @@ export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => 
     resolver: yupResolver(validationSchema),
   });
 
-  const { employee } : any = useSelector((state: State) => state?.employees);
+  const { employee }: any = useSelector((state: State) => state?.employees);
   const [gender, setGender] = useState('Male');
 
-    // fetch the employee by employeeID from store if it is a employee edit route.
-    useEffect(() => {
-      employeeId && dispatch(findEmployeeById(employeeId));
-    }, [dispatch, employeeId]);
-  
-    // populate the retrieved data from the store if it is a employee edit route.
-    useEffect(() => {
-      employee &&
-        Object.keys(fields).forEach((item: keyof Employee | string) => {
-          setValue(item, (employee as any)[camelToSnakeCase(item)]);
-        });
-    }, [employee, fields, setValue]);
+  // fetch the employee by employeeID from store if it is a employee edit route.
+  useEffect(() => {
+    employeeId && dispatch(findEmployeeById(employeeId));
+  }, [dispatch, employeeId]);
+
+  // populate the retrieved data from the store if it is a employee edit route.
+  useEffect(() => {
+    employee &&
+      Object.keys(fields).forEach((item: keyof Employee | string) => {
+        setValue(item, (employee as any)[camelToSnakeCase(item)]);
+      });
+  }, [employee, fields, setValue]);
 
   /**
    * Handles the change event of the gender select input.
@@ -97,11 +96,11 @@ export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => 
   const onSubmit: SubmitHandler<any> = (data) => {
     const formData = { ...data };
     normalizePayload(formData, gender, employee, avatarImg);
-    const mutatedData = { data: formData, employeeId : employeeId || "" };
-    employeeId ? dispatch(updateEmployee(mutatedData)  as unknown as AnyAction) : dispatch(createEmployee(formData) as unknown as AnyAction);
+    const mutatedData = { data: formData, employeeId: employeeId ?? "" };
+    employeeId ? dispatch(updateEmployee(mutatedData) as unknown as AnyAction) : dispatch(createEmployee(formData) as unknown as AnyAction);
 
   };
-  
+
 
   /**
    * Normalizes the payload data.
@@ -112,17 +111,17 @@ export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => 
  **/
 
   const normalizePayload = (data: any, gender: string, employee: any, avatarImg: string) => {
-  data['gender'] = gender?.charAt(0).toUpperCase();
-  if (data['photo'] === undefined) {
-    data['photo'] = employee ? employee?.photo : avatarImg;
-  }
-  data['first_name'] = data['firstName'];
-  data['last_name'] = data['lastName'];
-  delete data.firstName;
-  delete data.lastName;
-};
+    data['gender'] = gender?.charAt(0).toUpperCase();
+    if (data['photo'] === undefined) {
+      data['photo'] = employee ? employee?.photo : avatarImg;
+    }
+    data['first_name'] = data['firstName'];
+    data['last_name'] = data['lastName'];
+    delete data.firstName;
+    delete data.lastName;
+  };
 
-return (
+  return (
     <Fragment>
       <CssBaseline />
       <Container maxWidth='sm' sx={{ my: 8 }}>
@@ -163,7 +162,7 @@ return (
               <Box display={'flex'} alignItems='center'>
                 <Typography id='gender' width={120} variant='inherit' text='Gender' />
                 <Dropdown
-                  list={['Male','Female']}
+                  list={['Male', 'Female']}
                   labelId='gender'
                   id='gender'
                   fullWidth
@@ -187,7 +186,7 @@ return (
                 onclick={handleSubmit(onSubmit)}
                 text={employeeId ? 'Save' : 'Add'}
               >
-                
+
               </Button>
             </Box>
           </Box>

@@ -28,10 +28,16 @@ interface Employee {
 export function EmployeeGridView({ employees }: EmployeeGridViewProps): JSX.Element {
   return (
     <Grid container spacing={6} justifyContent='flex-start' alignItems='flex-start'>
-      {employees &&
-        employees.map((employee: Employee) => {
-          return <EmployeeCard key={employee._id} employee={employee} />;
-        })}
+      {employees?.map((employee: Employee) => {
+        return <EmployeeCard key={employee._id} employee={employee} />;
+      })}
     </Grid>
   );
 }
+
+
+
+
+
+
+

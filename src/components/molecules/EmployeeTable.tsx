@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from 'react';
-import { Palette, Theme, styled } from '@mui/material/styles';
+import { Palette, styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -122,7 +122,7 @@ export function EmployeeTable({ employees }: EmployeeTableProps): JSX.Element {
           { employees?.map((row) => (
             <TableRow key={row?.email}>
               <StyledTableCell  align='center' width={80} height={80}>
-                <Image src={(row?.photo) as string} alt={`${row?.name_img}`} width={60} height={60} />
+                <Image src={row?.photo} alt={`${row?.name_img}`} width={60} height={60} />
               </StyledTableCell>
               <StyledTableCell component='th' scope='row' align='left'>
                 <Typography variant='table-data' text= {`${row?.first_name}`} />

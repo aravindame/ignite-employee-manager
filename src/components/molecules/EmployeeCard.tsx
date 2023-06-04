@@ -42,8 +42,9 @@ export default function EmployeeCard({ employee }: EmployeeCardProps): JSX.Eleme
   const dispatch = useDispatch();
 
   const handleEditEmployee = (employee: any) => {
+    if (!employee?.id) return;
+    
     //route to the employee edit page
-    if (!employee || !employee._id) return;
     router.push(`/employee/edit/${employee._id}`);
   };
   return (

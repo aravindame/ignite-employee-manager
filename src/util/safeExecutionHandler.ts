@@ -17,7 +17,6 @@ interface CustomErrorResponse {
  * @param {CustomErrorResponse} [_error={ statusCode: 400, message: 'Bad Request' }] - Optional object that specifies a custom error response to send back to the client if an error occurs.
  *     @param {number} [_error.statusCode=400] - The status code to use for the error response. Defaults to 400.
  *     @param {string} [_error.message='Bad Request'] - The message to use for the error response. Defaults to 'Bad Request'.
- * @todo Implement proper  for errors logging mechanism which is database related or file related.
  * @returns {Promise<void>} A Promise that resolves when the function has completed executing.
  */
 

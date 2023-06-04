@@ -10,16 +10,16 @@ import * as Yup from 'yup';
 export default Yup.object().shape({
   firstName: Yup.string()
     .required('First Name is required')
-    .matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed for First Name')
+    .matches(/^[a-zA-Z\s]+$/, 'Only alphabets are allowed for First Name')
     .min(6, 'First Name must be at least 6 characters')
     .max(10, 'First Name must not exceed 10 characters'),
   lastName: Yup.string()
     .required('Last Name is required')
-    .matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed for Last Name')
+    .matches(/^[a-zA-Z\s]+$/, 'Only alphabets are allowed for First Name')
     .min(6, 'Last Name must be at least 6 characters')
     .max(10, 'Last Name must not exceed 10 characters'),
   email: Yup.string().required('Email is required').email('Email is invalid'),
   number: Yup.string()
     .required('Phone is required')
-    .matches(/^(?:[+0]9)?[0-9]{10}$/, 'Please enter valid phone number'),
+    .matches(/^(?:[+0]9)?\d{10}$/, 'Please enter valid phone number'),
 });

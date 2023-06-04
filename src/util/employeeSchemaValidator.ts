@@ -12,7 +12,7 @@ export function schemaValidator() {
     first_name: Joi.string()
       .required()
       .label('First name is required.')
-      .regex(/^[aA-zZ\s]+$/)
+      .regex(/^[a-zA-Z\s]+$/)
       .label('Only allow alphabets.')
       .min(6)
       .label('Minimum length should be 6 for first name.')
@@ -21,7 +21,7 @@ export function schemaValidator() {
     last_name: Joi.string()
       .required()
       .label('Last Name is required.')
-      .regex(/^[aA-zZ\s]+$/)
+      .regex(/^[a-zA-Z\s]+$/)
       .label('Only allow alphabets for Last Name.')
       .min(6)
       .label('Minimum length should be 6 for last name.')
@@ -30,7 +30,7 @@ export function schemaValidator() {
     email: Joi.string().required().email().label('Please enter valid email.'),
     number: Joi.string()
       .required()
-      .regex(/^(?:[+0]9)?[0-9]{10}$/)
+      .regex(/^(?:[+0]9)?\d{10}$/)
       .label('Phone number is in invalid format or length is less than 10.'),
     gender: Joi.string().valid('M', 'F').required().label('Values should be "M" or "F".'),
     photo: Joi.string().min(0).optional().label('Photo field is required.'),

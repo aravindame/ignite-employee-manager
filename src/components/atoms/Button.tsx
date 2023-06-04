@@ -1,6 +1,5 @@
 import React, { MouseEventHandler, ReactNode } from 'react';
 import {Button as MUIButton } from '@mui/material';
-import { useRouter } from 'next/navigation';
 import { SxProps, Theme } from '@mui/material/styles';
 
 /**
@@ -24,12 +23,12 @@ interface ButtonProps {
     text?: string;
     onclick: MouseEventHandler<HTMLButtonElement>;
     styles?: SxProps<Theme>;
-    variant?: ButtonPropsVariantOverrides | undefined;
+    variant?: ButtonPropsVariantOverrides;
     children?: ReactNode;
 }
 
 export function Button({ styles = {}, variant='contained', onclick, text, children }: ButtonProps): JSX.Element {
-    const router = useRouter();
+
     return (
         <MUIButton
             variant = {variant}
