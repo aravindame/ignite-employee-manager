@@ -33,8 +33,6 @@ describe('listEmployeeHandler', () => {
     expect(mockResponse.status).toHaveBeenCalledWith(200);
     expect(mockResponse.json).toHaveBeenCalledWith({ employees: mockEmployees });
   });
-
-
 });
   
   describe('addEmployeeHandler', () => {

@@ -40,6 +40,4 @@ describe('Button component', () => {
     const button = getByText('Click me');
     expect(button).toBeInTheDocument();
   });
-
-  // Add more test cases as needed
 });

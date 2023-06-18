@@ -30,5 +30,6 @@ describe('Dropdown', () => {
     options.forEach((option, index) => {
       expect(option).toHaveTextContent(list[index]);
     });
+    
   });
 });

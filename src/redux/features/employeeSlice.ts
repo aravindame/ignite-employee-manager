@@ -4,7 +4,7 @@ import {
   deleteEmployee,
   fetchAllEmployees,
   updateEmployee,
-} from '@/../../src/redux/actions/employee.actions';
+} from '../../../src/redux/actions/employee.actions';
 import {
   createEmployeeFulfilledReducer,
   deleteEmployeeFulfilledReducer,
@@ -12,7 +12,7 @@ import {
   pendingReducer,
   rejectedReducer,
   updateEmployeeFulfilledReducer,
-} from '@/../../src/redux/reducers/employee.reducers';
+} from '../../../src/redux/reducers/employee.reducers';
 import { TypedActionCreator } from '@reduxjs/toolkit/dist/listenerMiddleware/types';
 
 /**

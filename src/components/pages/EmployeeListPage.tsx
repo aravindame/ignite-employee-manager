@@ -1,5 +1,6 @@
 import EmployeeList from "../organisums/EmployeeListView";
 import Header from "../organisums/Header";
+import withAuthentication from "@/hocs/withAuthentication";
 
 /**
  * A Component that will responsible for rendering list all employee page
@@ -8,7 +9,7 @@ import Header from "../organisums/Header";
  *
  */
 
-export default function EmployeeListPage(): JSX.Element {
+function EmployeeListPage(): JSX.Element {
   return (
     <main>
       <Header />
@@ -16,3 +17,5 @@ export default function EmployeeListPage(): JSX.Element {
     </main>
   );
 }
+
+export default withAuthentication(EmployeeListPage);

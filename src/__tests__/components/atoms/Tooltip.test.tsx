@@ -13,7 +13,6 @@ describe('Tooltip', () => {
         );
 
         const tooltipElement = getByText(content);
-
         expect(tooltipElement).toBeInTheDocument();
     });
 });

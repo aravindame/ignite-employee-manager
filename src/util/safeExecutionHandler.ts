@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest } from "next";
-
+import * as Sentry from '@sentry/nextjs';
 
 interface CustomErrorResponse {
   statusCode?: number;
@@ -35,6 +35,7 @@ export async function safeExecutionHandler(
     await exec(req, res);
     
   } catch (error:any) {
+    Sentry.captureException(error);
     // Send back an error response with the specified status code and message.
     res
       .status(error?.statusCode || _error?.statusCode)

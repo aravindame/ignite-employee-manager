@@ -1,5 +1,7 @@
+
 import connection from '@/../../src/database/db.connection';
 import { deleteEmployeeHandler, updateEmployeeHandler } from '@/controllers/employee.controller';
+import authHandler from '@/util/authHandler';
 import { safeExecutionHandler } from '@/util/safeExecutionHandler';
 import { NextApiResponse, NextApiRequest } from "next";
 
@@ -11,6 +13,8 @@ import { NextApiResponse, NextApiRequest } from "next";
  * @returns {Promise<void>} A Promise that resolves when the request has been handled.
  */
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
+    //Authenticate the incoming request.
+  await safeExecutionHandler(authHandler, req, res);
   await safeExecutionHandler(connection, req, res, { statusCode: 500 });
 
   switch (req?.method) {

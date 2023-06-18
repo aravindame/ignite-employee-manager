@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Typography } from './../../../components/atoms/Typography';
 
-describe('Typography component', () => {
+describe('Typography component.', () => {
   it('renders text correctly', () => {
     const { getByText } = render(<Typography text="Hello, World!" />);
     const textElement = getByText('Hello, World!');

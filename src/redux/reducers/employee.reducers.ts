@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 
 export interface Employee {
   _id: string;
@@ -48,6 +49,7 @@ Reducer function for the rejected state.
 @returns {State} - The updated state with the error object, rejected status, and loading set to false.
 */
 export const rejectedReducer = (state: State, action: Action): State => {
+  toast.error(action.payload?.message ?? "Unknown error occurred");
   return {
     ...state,
     error: action.payload,
@@ -86,6 +88,7 @@ export const createEmployeeFulfilledReducer = (
   state: State,
   action: Action
 ): State => {
+  toast.success("Employee added successfully.");
   return {
     ...state,
     status: statusTypes.FULFILLED,
@@ -105,7 +108,7 @@ export const updateEmployeeFulfilledReducer = (
   state: State,
   action: Action
 ): State => {
-
+  toast.success("Employee updated successfully.");
   return {
     ...state,
     status: statusTypes.FULFILLED,
@@ -131,6 +134,7 @@ export const deleteEmployeeFulfilledReducer = (
   state: State,
   action: Action
 ): State => {
+ setTimeout(()=>toast.success("Employee deleted successfully."), 2000);
   return {
     ...state,
     status: statusTypes.FULFILLED,

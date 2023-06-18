@@ -1,14 +1,19 @@
-"use client"
+"use client";
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { ThemeProviderWrapper } from '@/themes/themeContext';
 import '../styles/index.css';
-import { Wrapper } from '@/redux/Wrapper';
+import { Wrapper as ReduxProviderWrapper } from '@/redux/Wrapper';
+import { SessionProvider } from "next-auth/react"
 interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export const SessionProviderWrapper = ({ children }: RootLayoutProps) => {
+  return (<ThemeProviderWrapper><SessionProvider >{children}</SessionProvider></ThemeProviderWrapper>);
+};
+
+export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
       {/*
@@ -17,9 +22,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       */}
       <head />
       <body>
-        <ThemeProviderWrapper>
-          <Wrapper>{children}</Wrapper>
-        </ThemeProviderWrapper>
+        <SessionProviderWrapper>
+          <ReduxProviderWrapper>{children}</ReduxProviderWrapper>
+        </SessionProviderWrapper>
       </body>
     </html>
   );

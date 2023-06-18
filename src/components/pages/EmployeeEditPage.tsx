@@ -1,4 +1,6 @@
+"use client";
 
+import withAuthentication from '@/hocs/withAuthentication';
 import Header from '../organisums/Header';
 import { EmployeeForm } from '../templates/EmployeeForm';
 
@@ -13,15 +15,19 @@ import { EmployeeForm } from '../templates/EmployeeForm';
  */
 
 interface EmployeeEditPageProps {
-    employeeId: string | undefined;
+    employeeId?: string | undefined;
 }
 
-export default function EmployeeEditPage({ employeeId } : EmployeeEditPageProps): JSX.Element {
+function EmployeeEditPage({ employeeId } : EmployeeEditPageProps): JSX.Element {
 
   return (
+    <>
     <main>
       <Header />
       <EmployeeForm employeeId={employeeId} />
     </main>
+    </>
   );
 }
+
+export default withAuthentication(EmployeeEditPage);

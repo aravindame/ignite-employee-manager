@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import EmployeeCard from '@/../../src/components/molecules/EmployeeCard';
+import EmployeeCard from '../../../src/components/molecules/EmployeeCard';
 
 /**
  * Renders a grid view of employee cards.

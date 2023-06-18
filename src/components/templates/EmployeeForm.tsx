@@ -13,17 +13,18 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/navigation';
-import validationSchema from '@/../../src/util/employeeFormValidator';
-import { camelToSnakeCase } from '@/../../src/util/camelToSnakeCase';
+import validationSchema from '../../util/employeeFormValidator';
+import { camelToSnakeCase } from '../../util/camelToSnakeCase';
 import { Button } from '../atoms/Button';
 import { Typography } from '../atoms/Typography';
 import { Dropdown } from '../atoms/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
-import { Employee as EmployeeType, State } from '@/redux/reducers/employee.reducers';
-import { findEmployeeById } from '@/redux/features/employeeSlice';
-import { createEmployee, updateEmployee } from '@/redux/actions/employee.actions';
+import { Employee as EmployeeType, State } from '../../redux/reducers/employee.reducers';
+import { findEmployeeById } from '../../redux/features/employeeSlice';
+import { createEmployee, updateEmployee } from '../../redux/actions/employee.actions';
 import { AnyAction } from '@reduxjs/toolkit';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 /**
  * A component that is responsible for rendering the employee add or edit forms.
  * @component
@@ -123,6 +124,9 @@ export const EmployeeForm = ({ employeeId }: EmployeeFormProps): JSX.Element => 
 
   return (
     <Fragment>
+      <ToastContainer position="top-right"
+        autoClose={5000}
+      />
       <CssBaseline />
       <Container maxWidth='sm' sx={{ my: 8 }}>
         <Box display={'flex'} justifyContent='end'>

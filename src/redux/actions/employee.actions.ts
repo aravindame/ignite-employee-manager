@@ -40,7 +40,8 @@ const urlConfig = {
  */
 
 const handleRequestError = (error: any): ErrorResponse => {
-  return error?.response?.data || { message: 'Unknown error occurred' };
+  return error?.response?.data || error?.message ||
+    { message: 'Unknown error occurred' };
 };
 
 /**
@@ -68,7 +69,7 @@ const fetchAllEmployeesPayloadCreator: AsyncThunkPayloadCreator<
  * @type {AsyncThunkPayloadCreator<CreateEmployeeResponse, { employee: Employee }, { rejectValue: ErrorResponse }>}
  */
 const createEmployeePayloadCreator: AsyncThunkPayloadCreator<
-CreateEmployeeResponse,
+  CreateEmployeeResponse,
   { employee: Employee },
   { rejectValue: ErrorResponse }
 > = async (employee, { rejectWithValue }) => {
@@ -86,7 +87,7 @@ CreateEmployeeResponse,
  * @type {AsyncThunkPayloadCreator<UpdateEmployeeResponse, { data: Employee; employeeId: string }, { rejectValue: ErrorResponse }>}
  */
 const updateEmployeePayloadCreator: AsyncThunkPayloadCreator<
-   UpdateEmployeeResponse,
+  UpdateEmployeeResponse,
   { data: Employee; employeeId: string },
   { rejectValue: ErrorResponse }
 > = async ({ data, employeeId }, { rejectWithValue }) => {

@@ -1,3 +1,5 @@
+
+
 import mongoose from 'mongoose';
 import EmployeeModel from '@/models/employee';
 import axios from 'axios';
@@ -49,7 +51,7 @@ async function dbConnect() {
       useUnifiedTopology: true,
       bufferCommands: false,
     };
-
+    mongoose.set('strictQuery', false);
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
       return mongoose;
     });

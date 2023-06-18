@@ -5,7 +5,6 @@ import { Avatar } from './../../../components/atoms/Avatar';
 describe('Avatar component', () => {
   test('renders without errors', () => {
     render(<Avatar />);
-    // No errors during rendering
   });
 
   test('triggers onClick event when clicked', () => {

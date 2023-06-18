@@ -1,13 +1,16 @@
+"use client";
+
 import { EmployeeForm } from "../templates/EmployeeForm";
 import Header from "../organisums/Header";
-
+import withAuthentication from "@/hocs/withAuthentication";
 
 /**
  * A Component that will responsible for rendering employee add page
  * @author Aravinda Meewalaarachchi
  *
  */
-export default function EmployeeAddPage(): JSX.Element {
+
+function EmployeeAddPage(): JSX.Element {
   return (
     <main>
       <Header />
@@ -15,3 +18,5 @@ export default function EmployeeAddPage(): JSX.Element {
     </main>
   );
 }
+
+export default withAuthentication(EmployeeAddPage);

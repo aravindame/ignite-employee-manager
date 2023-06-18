@@ -14,7 +14,7 @@ import { Box, useTheme } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
-import { deleteEmployee } from '@/../../src/redux/actions/employee.actions';
+import { deleteEmployee } from './../../../src/redux/actions/employee.actions';
 import { Avatar } from '../atoms/Avatar';
 import { Button } from '../atoms/Button';
 import { Typography } from '../atoms/Typography';
@@ -72,15 +72,15 @@ interface CustomPalette extends Palette {
 
 const StyledTableCell = styled(TableCell)(({ theme })=> ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: (theme.palette as CustomPalette).tableCellHead.background,
+    backgroundColor: (theme.palette as CustomPalette).tableCellHead?.background,
     color: theme.palette.common.white,
     border: 'solid',
-    borderColor: (theme.palette as CustomPalette).tableCellHead.boarder,
+    borderColor: (theme.palette as CustomPalette).tableCellHead?.boarder,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
     border: 'solid',
-    borderColor: (theme.palette as CustomPalette).tableCellHead.boarder,
+    borderColor: (theme.palette as CustomPalette).tableCellHead?.boarder,
   },
 }));
 
