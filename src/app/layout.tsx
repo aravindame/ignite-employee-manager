@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { ThemeProviderWrapper } from '@/themes/themeContext';
 import '../styles/index.css';
 import { Wrapper as ReduxProviderWrapper } from '@/redux/Wrapper';

@@ -2,8 +2,6 @@ import connection from '@/../../src/database/db.connection';
 import { addEmployeeHandler, listAllEmployeeHandler } from '@/controllers/employee.controller';
 import { safeExecutionHandler } from '@/util/safeExecutionHandler';
 import { NextApiResponse, NextApiRequest } from "next";
-import { authOptions } from '../../api/auth/[...nextauth]'
-import { getServerSession } from "next-auth/next"
 import authHandler from '@/util/authHandler';
 
 /**

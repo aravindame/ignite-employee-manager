@@ -15,7 +15,7 @@ const withAuthentication = <P extends object>(
 ): React.FC<P> => {
   const WithAuthentication: React.FC<P> = (props) => {
     const router = useRouter();
-    const { data: session, status } = useSession();
+    const { status } = useSession();
 
     if (status && status === 'loading') {
       return null; 
