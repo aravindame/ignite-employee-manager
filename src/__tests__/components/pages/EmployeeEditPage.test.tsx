@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { render } from '@testing-library/react';
 import EmployeeEditPage from '../../../components/pages/EmployeeEditPage';
 import Header from '../../../components/organisums/Header';
