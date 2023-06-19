@@ -1,6 +1,4 @@
 
-"use client";
-
 import React from 'react';
 import Header from "../../components/organisums/Header";
 import Typography from '@mui/material/Typography';

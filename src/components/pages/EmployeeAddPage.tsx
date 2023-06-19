@@ -1,4 +1,3 @@
-"use client";
 
 import { EmployeeForm } from "../templates/EmployeeForm";
 import Header from "../organisums/Header";

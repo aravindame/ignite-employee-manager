@@ -1,8 +1,9 @@
+"use client";
+
 import React from 'react';
 import NotFoundPage from './../components/pages/NotFoundPage';
 
-const NotFound: React.FC = (): JSX.Element => {
+export default function NotFound(): JSX.Element {
   return <NotFoundPage />;
 };
 
-export default NotFound;

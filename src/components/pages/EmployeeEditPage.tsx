@@ -1,4 +1,3 @@
-"use client";
 
 import withAuthentication from '@/hocs/withAuthentication';
 import Header from '../organisums/Header';
